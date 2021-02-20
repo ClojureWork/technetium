@@ -32,8 +32,9 @@ Pod.update = function(pod) {
 };
 
 Pod.dataToString = function(pod) {
-    return "Pod[id=" + pod.data.id + ",x=" + pod.data.x + ",y=" + pod.data.y + ",z=" + pod.data.z +
-        ",radiation=" + pod.data.radiation + ",flagged=" + pod.data.flagged + "]";
+    return "TBD"
+    // return "Pod[id=" + pod.data.id + ",x=" + pod.data.x + ",y=" + pod.data.y + ",z=" + pod.data.z +
+    //     ",radiation=" + pod.data.radiation + ",flagged=" + pod.data.flagged + "]";
 };
 
 Pod.createMinefield = function(podData) {
