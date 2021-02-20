@@ -2,22 +2,21 @@
 
 (def field {:size 3 :mines [{:x 1 :y 1 :z 1}]})
 
+(def game (atom []))
+
 (defn asteroid [x y z]
   {:x x
    :y y
    :z z
    :radiation nil})
 
-(def start
-  (for [x (range 0 3)
-        y (range 0 3)
-        z (range 0 3)]
+(defn new-game [size]
+  (for [x (range 0 size)
+        y (range 0 size)
+        z (range 0 size)]
     (asteroid x y z)))
 
-(def game-repo (atom start))
-
-(defn get-game [] @game-repo)
-
+(defn get-game [] @game)
 
 (defn key-for [asteroid]
   (let [x (:x asteroid)
@@ -28,5 +27,7 @@
 (defn entry-for [asteroid]
   {(key-for asteroid) asteroid})
 
+(defn reset []
+  (reset! game (new-game 3)))
 
-
+(reset)
