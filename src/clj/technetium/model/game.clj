@@ -8,13 +8,13 @@
    :z z
    :radiation nil})
 
-(defn start []
+(def start
   (for [x (range 0 3)
         y (range 0 3)
         z (range 0 3)]
     (asteroid x y z)))
 
-(def game-repo (atom (start)))
+(def game-repo (atom start))
 
 (defn get-game [] @game-repo)
 
