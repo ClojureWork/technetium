@@ -93,7 +93,7 @@ Pod.getColor = function(podData) {
     if(podData.flagged) {
         return Pod.MARKED;
     }
-    var radiation = podData.radiation;
+    let radiation = podData.radiation;
     switch (radiation) {
         case -1:
         case 0: return Pod.GRAY;

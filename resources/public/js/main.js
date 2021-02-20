@@ -127,7 +127,7 @@ function getGameData(playerId) {
             startGame();
         }
     };
-    xhttp.open("GET", "http://localhost:3000/game", true);
+    xhttp.open("GET", "/game", true);
     xhttp.setRequestHeader("Content-type", "application/json");
     xhttp.send();
 }
