@@ -1,6 +1,27 @@
-{% extends "base.html" %}
-{% block content %}
-  <div class="content">
-  {{docs|markdown}}
-  </div>
-{% endblock %}
+<!DOCTYPE html>
+
+<html>
+
+<head>
+  <title>Space Mines</title>
+  <script type="text/javascript" src="/js/libs/three.js"></script>
+  <script type="text/javascript" src="/js/libs/FlyControls.js"></script>
+  <script type="text/javascript" src="/js/util.js"></script>
+  <script type="text/javascript" src="/js/pod.js"></script>
+  <script type="text/javascript" src="/js/main.js"></script>
+  <style>
+    body {
+      /* set margin to 0 and overflow to hidden, to go fullscreen */
+      margin: 0;
+      overflow: hidden;
+    }
+  </style>
+</head>
+<body>
+
+<!-- Div which will hold the Output -->
+<div id="WebGL-output">
+</div>
+
+</body>
+</html>
