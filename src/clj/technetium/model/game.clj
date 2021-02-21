@@ -1,6 +1,8 @@
 (ns technetium.model.game)
 
-(def field {:size 2 :mines [{:x 1 :y 1 :z 1}]})
+(def field-size 2)
+
+(def field {:size field-size :mines [{:x 1 :y 1 :z 1}]})
 
 (def game (atom []))
 
@@ -17,10 +19,16 @@
         z (range 0 size)]
     (asteroid x y z)))
 
+(defn radiation-from [x y z]
+   (if (.contains (field :mines) {:x x :y y :z z}) 1 0))
+
+(defn reset []
+  (reset! game (new-game field-size)) @game)
+
 (defn select [x y z]
   (if
     (.contains (field :mines) {:x x :y y :z z})
-    (new-game 2) (new-game 1)))
+    (reset) (new-game 1)))
 
 (defn get-game [] @game)
 
@@ -32,8 +40,5 @@
 
 (defn entry-for [asteroid]
   {(key-for asteroid) asteroid})
-
-(defn reset []
-  (reset! game (new-game 2)) @game)
 
 (reset)
