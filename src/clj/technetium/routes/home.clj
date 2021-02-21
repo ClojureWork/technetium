@@ -19,6 +19,9 @@
    :headers {"Content-Type" "application/json"}
    :body (json/write-str {:x x :y y :z z})})
 
+(defn bob [{{:keys [x y z]} :path-params}]
+            (asteroid x y z))
+
 (defn game [request]
   {:status 200
    :headers {"Content-Type" "application/json"}
@@ -31,7 +34,4 @@
    ["/" {:get home-page}]
    ["/about" {:get about-page}]
    ["/game" {:get game}]
-   ["/asteroid/:x/:y/:z"
-    {:get
-     (fn [{{:keys [x y z]} :path-params}]
-       (asteroid x y z))}]])
+   ["/asteroid/:x/:y/:z" {:get bob}]])
