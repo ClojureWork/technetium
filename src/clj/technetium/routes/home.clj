@@ -14,6 +14,11 @@
 (defn about-page [request]
   (layout/render request "about.html"))
 
+(defn asteroid [x y z]
+  {:status 200
+   :headers {"Content-Type" "application/json"}
+   :body (json/write-str {:x x :y y :z z})})
+
 (defn game [request]
   {:status 200
    :headers {"Content-Type" "application/json"}
@@ -29,6 +34,4 @@
    ["/asteroid/:x/:y/:z"
     {:get
      (fn [{{:keys [x y z]} :path-params}]
-       {:status 200
-        :headers {"Content-Type" "application/json"}
-        :body (json/write-str {:x x :y y :z z})})}]])
+       (asteroid x y z))}]])
