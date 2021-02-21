@@ -19,8 +19,6 @@
    :headers {"Content-Type" "application/json"}
    :body (json/write-str (game/get-game))})
 
-(defn asteroid [request])
-
 (defn home-routes []
   [""
    {:middleware [middleware/wrap-csrf
@@ -28,5 +26,9 @@
    ["/" {:get home-page}]
    ["/about" {:get about-page}]
    ["/game" {:get game}]
-   ["/asteroid/:x/:y/:z" {:get asteroid}]])
-
+   ["/asteroid/:x/:y/:z"
+    {:get
+     (fn [{{:keys [x y z]} :path-params}]
+       {:status 200
+        :headers {"Content-Type" "application/json"}
+        :body (json/write-str {:x x :y y :z z})})}]])
