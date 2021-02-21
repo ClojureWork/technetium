@@ -20,7 +20,7 @@
     (asteroid x y z)))
 
 (defn radiation-from [x y z]
-   (if (.contains (field :mines) {:x x :y y :z z}) 1 0))
+  (if (.contains (field :mines) {:x x :y y :z z}) 1 0))
 
 (defn reset []
   (reset! game (new-game field-size)) @game)
@@ -30,13 +30,21 @@
     (.contains (field :mines) {:x x :y y :z z})
     (reset) (new-game 1)))
 
+(defn adjacent [x y z]
+  (remove #(= {:x x :y y :z z} %)
+          (for [a (range (- x 1) (+ x 2))
+                b (range (- y 1) (+ y 2))
+                c (range (- z 1) (+ z 2))]
+            {:x a :y b :z c})))
+
+
 (defn get-game [] @game)
 
 (defn key-for [asteroid]
   (let [x (:x asteroid)
         y (:y asteroid)
         z (:z asteroid)]
-       (str "x" x "y" y "z" z)))
+    (str "x" x "y" y "z" z)))
 
 (defn entry-for [asteroid]
   {(key-for asteroid) asteroid})

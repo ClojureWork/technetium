@@ -6,8 +6,9 @@
 (deftest test-game
   (testing "game creation"
     (let [game (game/new-game 3)]
-      (is (= 27 (count game)))))
+      (is (= 27 (count game))))))
 
-  (testing "game creation"
-    (let [game (game/new-game 3)]
-      (is (= 27 (count game)))))
+(deftest test-adjacent
+  (testing "fetching list of adjacent locations"
+    (let [adjacent (game/adjacent 0 0 0)]
+      (is (= 26 (count adjacent))))))
