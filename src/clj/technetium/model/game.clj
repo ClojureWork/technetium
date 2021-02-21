@@ -7,6 +7,12 @@
 
 (def game (atom []))
 
+(defn has-location [asteroid x y z]
+  (and (= (asteroid :x) x) (= (asteroid :y) y) (= (asteroid :z) z)))
+
+(defn find-asteroid-at [x y z]
+  (first (filter #(has-location % x y z) @game)))
+
 (defn asteroid [x y z]
   {:x         x
    :y         y
