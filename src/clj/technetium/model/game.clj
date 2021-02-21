@@ -1,8 +1,9 @@
 (ns technetium.model.game)
 
-(def field-size 2)
+(def field-size 3)
 
-(def field {:size field-size :mines [{:x 1 :y 1 :z 1}]})
+(def field {:size field-size
+            :mines [{:x 1 :y 1 :z 1} {:x 0 :y 0 :z 0}]})
 
 (def game (atom []))
 
@@ -22,6 +23,9 @@
 (defn radiation-from [x y z]
   (if (.contains (field :mines) {:x x :y y :z z}) 1 0))
 
+(defn radiation-from-location [location]
+  (radiation-from (:x location) (:y location) (:z location)))
+
 (defn reset []
   (reset! game (new-game field-size)) @game)
 
@@ -37,6 +41,8 @@
                 c (range (- z 1) (+ z 2))]
             {:x a :y b :z c})))
 
+(defn residual-radiation-at [x y z]
+  (reduce + (map radiation-from-location (adjacent x y z))))
 
 (defn get-game [] @game)
 
