@@ -19,11 +19,14 @@
    :headers {"Content-Type" "application/json"}
    :body (json/write-str (game/get-game))})
 
+(defn asteroid [request])
+
 (defn home-routes []
   [""
    {:middleware [middleware/wrap-csrf
                  middleware/wrap-formats]}
    ["/" {:get home-page}]
    ["/about" {:get about-page}]
-   ["/game" {:get game}]])
+   ["/game" {:get game}]
+   ["/asteroid/:x/:y/:z" {:get asteroid}]])
 

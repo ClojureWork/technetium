@@ -5,16 +5,21 @@
 (def game (atom []))
 
 (defn asteroid [x y z]
-  {:x x
-   :y y
-   :z z
-   :radiation nil})
+  {:x         x
+   :y         y
+   :z         z
+   :radiation nil
+   :flagged   false})
 
 (defn new-game [size]
   (for [x (range 0 size)
         y (range 0 size)
         z (range 0 size)]
     (asteroid x y z)))
+
+(defn select [x y z]
+  (if
+    (.contains field {:x x :y y :z z}) (new-game 3)))
 
 (defn get-game [] @game)
 
