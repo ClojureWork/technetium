@@ -3,7 +3,8 @@
 (def field-size 3)
 
 (def field {:size field-size
-            :mines [{:x 1 :y 1 :z 1} {:x 0 :y 0 :z 0}]})
+            :radioactive [{:x 1 :y 1 :z 1} {:x 0 :y 0 :z 0}]})
+
 
 (def game (atom []))
 
@@ -27,7 +28,7 @@
     (asteroid x y z)))
 
 (defn radiation-from [x y z]
-  (if (.contains (field :mines) {:x x :y y :z z}) 1 0))
+  (if (.contains (field :radioactive) {:x x :y y :z z}) 1 0))
 
 (defn radiation-from-location [location]
   (radiation-from (:x location) (:y location) (:z location)))
@@ -37,7 +38,7 @@
 
 (defn select [x y z]
   (if
-    (.contains (field :mines) {:x x :y y :z z})
+    (.contains (field :radioactive) {:x x :y y :z z})
     (reset) (new-game 1)))
 
 (defn adjacent [x y z]
