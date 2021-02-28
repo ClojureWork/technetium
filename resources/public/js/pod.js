@@ -81,12 +81,12 @@ Pod.select = function(minefield, mineMesh) {
 };
 
 Pod.GRAY = 0x606060;
-Pod.GRAY = 0x606060;
 Pod.BLUE = 0x0000FF;
 Pod.GREEN = 0x00FF00;
 Pod.YELLOW = 0xFFFF00;
 Pod.ORANGE = 0xFFA500;
 Pod.RED = 0xFF0000;
+Pod.WHITE = 0xFFFFFF;
 Pod.MARKED = 0xFF00FF;
 
 Pod.getColor = function(podData) {
@@ -102,8 +102,9 @@ Pod.getColor = function(podData) {
         case 3: return Pod.YELLOW;
         case 4: return Pod.ORANGE;
         case 5: return Pod.RED;
+        case 43: return Pod.WHITE;
         default:
-            console.log("Radiation of " + " is not valid");
+            console.log("Radiation of [" + radiation + "] is not valid");
             return Pod.GRAY;
     }
 };

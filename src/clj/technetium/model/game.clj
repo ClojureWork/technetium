@@ -13,7 +13,8 @@
     (field/asteroid x y z nil)))
 
 (defn reset []
-  (reset! game (new-game field/field-size)) @game)
+  ;(reset! game (new-game field/field-size)) @game)
+  (reset! game (field/new-asteroid-field)) @game)
 
 (defn select [x y z]
   (if

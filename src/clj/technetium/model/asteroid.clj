@@ -29,14 +29,18 @@
   (radiation-from (:x location) (:y location) (:z location)))
 
 (defn residual-radiation-at [x y z]
-  (reduce + (map radiation-from-location (adjacent x y z))))
+  (if (radioactive? x y z)
+    43
+    (reduce + (map radiation-from-location (adjacent x y z)))))
 
-(defn new-asteroid-field [data]
-  (let [size (:size data)]
-    (for [x (range 0 size)
-          y (range 0 size)
-          z (range 0 size)]
-      (asteroid x y z (residual-radiation-at x y z)))))
+(defn new-asteroid-field
+  ([] (new-asteroid-field field-data))
+  ([data]
+   (let [size (:size data)]
+     (for [x (range 0 size)
+           y (range 0 size)
+           z (range 0 size)]
+       (asteroid x y z (residual-radiation-at x y z))))))
 
 (defn has-location [asteroid x y z]
   (and (= (asteroid :x) x) (= (asteroid :y) y) (= (asteroid :z) z)))
