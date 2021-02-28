@@ -20,7 +20,7 @@
    :body (json/write-str {:x x :y y :z z})})
 
 (defn bob [{{:keys [x y z]} :path-params}]
-            (asteroid x y z))
+  (asteroid x y z))
 
 (defn game [request]
   {:status 200
