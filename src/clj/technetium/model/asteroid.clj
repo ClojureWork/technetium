@@ -56,6 +56,7 @@
 (defn reset []
   (reset! field (new-asteroid-field)) @field)
 
+(defn radioactive-count [field]
+  (count (filter #(= RADIOACTIVE (:radiation %)) field)))
+
 (reset)
-
-
