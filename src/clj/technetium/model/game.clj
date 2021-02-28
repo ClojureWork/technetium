@@ -17,7 +17,7 @@
 
 (defn select [x y z]
   (if
-    (.contains (field/field-data :radioactive) {:x x :y y :z z})
+   (.contains (field/field-data :radioactive) {:x x :y y :z z})
     (reset) (new-game 1)))
 
 (defn get-game [] @game)
