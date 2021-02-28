@@ -19,8 +19,9 @@
    :headers {"Content-Type" "application/json"}
    :body (json/write-str {:x x :y y :z z})})
 
-(defn bob [{{:keys [x y z]} :path-params}]
-  (asteroid x y z))
+(defn get-asteroid-json [{:keys [query-params]}]
+  (println query-params)
+  (asteroid (query-params "x") (query-params "y") (query-params "z")))
 
 (defn game [request]
   {:status 200
@@ -34,4 +35,4 @@
    ["/" {:get home-page}]
    ["/about" {:get about-page}]
    ["/game" {:get game}]
-   ["/asteroid/:x/:y/:z" {:get bob}]])
+   ["/asteroid" {:get get-asteroid-json}]])
