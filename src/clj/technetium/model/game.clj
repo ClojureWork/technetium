@@ -2,8 +2,22 @@
 
 (def field-size 3)
 
-(def field {:size field-size
-            :radioactive [{:x 1 :y 1 :z 1} {:x 0 :y 0 :z 0}]})
+(def field-data {:size   field-size
+                 :radioactive [{:x 1 :y 1 :z 1} {:x 0 :y 0 :z 0}]})
+
+(defn asteroid [x y z]
+  {:x         x
+   :y         y
+   :z         z
+   :radiation nil
+   :flagged   false})
+
+(defn new-asteroid-field [data]
+  (let [size (:size data)]
+    (for [x (range 0 size)
+          y (range 0 size)
+          z (range 0 size)]
+      (asteroid x y z))))
 
 
 (def game (atom []))
@@ -14,13 +28,6 @@
 (defn find-asteroid-at [x y z]
   (first (filter #(has-location % x y z) @game)))
 
-(defn asteroid [x y z]
-  {:x         x
-   :y         y
-   :z         z
-   :radiation nil
-   :flagged   false})
-
 (defn new-game [size]
   (for [x (range 0 size)
         y (range 0 size)
@@ -28,7 +35,7 @@
     (asteroid x y z)))
 
 (defn radiation-from [x y z]
-  (if (.contains (field :radioactive) {:x x :y y :z z}) 1 0))
+  (if (.contains (field-data :radioactive) {:x x :y y :z z}) 1 0))
 
 (defn radiation-from-location [location]
   (radiation-from (:x location) (:y location) (:z location)))
@@ -38,7 +45,7 @@
 
 (defn select [x y z]
   (if
-    (.contains (field :radioactive) {:x x :y y :z z})
+    (.contains (field-data :radioactive) {:x x :y y :z z})
     (reset) (new-game 1)))
 
 (defn adjacent [x y z]
