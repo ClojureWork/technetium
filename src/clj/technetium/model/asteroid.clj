@@ -1,4 +1,4 @@
-(ns technetium.model.field)
+(ns technetium.model.asteroid)
 
 (def field-size 4)
 

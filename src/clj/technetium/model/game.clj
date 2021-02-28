@@ -1,5 +1,5 @@
 (ns technetium.model.game
-  (:require [technetium.model.field :as field]))
+  (:require [technetium.model.asteroid :as field]))
 
 (def game (atom []))
 
