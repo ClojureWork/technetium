@@ -5,20 +5,25 @@
 (def field-data {:size   field-size
                  :radioactive [{:x 1 :y 1 :z 1} {:x 0 :y 0 :z 0}]})
 
-(defn asteroid [x y z]
+(defn radioactive? [x y z]
+  (some #(= % {:x x :y y :z z}) (:radioactive field-data)))
+
+(defn asteroid [x y z radiation]
   {:x         x
    :y         y
    :z         z
-   :radiation nil
+   :radiation radiation
    :flagged   false})
+
+(defn radiation-from [x y z]
+  (if (.contains (field-data :radioactive) {:x x :y y :z z}) 1 0))
 
 (defn new-asteroid-field [data]
   (let [size (:size data)]
     (for [x (range 0 size)
           y (range 0 size)
           z (range 0 size)]
-      (asteroid x y z))))
-
+      (asteroid x y z nil))))
 
 (def game (atom []))
 
@@ -32,10 +37,7 @@
   (for [x (range 0 size)
         y (range 0 size)
         z (range 0 size)]
-    (asteroid x y z)))
-
-(defn radiation-from [x y z]
-  (if (.contains (field-data :radioactive) {:x x :y y :z z}) 1 0))
+    (asteroid x y z nil)))
 
 (defn radiation-from-location [location]
   (radiation-from (:x location) (:y location) (:z location)))
