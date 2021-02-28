@@ -10,10 +10,9 @@
   (for [x (range 0 size)
         y (range 0 size)
         z (range 0 size)]
-    (field/asteroid x y z nil)))
+    (field/new-asteroid x y z nil)))
 
 (defn reset []
-  ;(reset! game (new-game field/field-size)) @game)
   (reset! game (field/new-asteroid-field)) @game)
 
 (defn select [x y z]

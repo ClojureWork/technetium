@@ -1,19 +1,25 @@
 (ns technetium.model.asteroid)
 
+(def RADIOACTIVE 43)
+
 (def field-size 4)
 
 (def field-data {:size   field-size
                  :radioactive [{:x 1 :y 1 :z 1} {:x 0 :y 0 :z 0}]})
 
+(def field (atom []))
+
 (defn radioactive? [x y z]
   (some #(= % {:x x :y y :z z}) (:radioactive field-data)))
 
-(defn asteroid [x y z radiation]
-  {:x         x
-   :y         y
-   :z         z
-   :radiation radiation
-   :flagged   false})
+(defn new-asteroid
+  ([x y z] (new-asteroid x y z nil))
+  ([x y z radiation]
+   {:x         x
+    :y         y
+    :z         z
+    :radiation radiation
+    :flagged   false}))
 
 (defn radiation-from [x y z]
   (if (.contains (field-data :radioactive) {:x x :y y :z z}) 1 0))
@@ -30,7 +36,7 @@
 
 (defn residual-radiation-at [x y z]
   (if (radioactive? x y z)
-    43
+    RADIOACTIVE
     (reduce + (map radiation-from-location (adjacent x y z)))))
 
 (defn new-asteroid-field
@@ -40,8 +46,16 @@
      (for [x (range 0 size)
            y (range 0 size)
            z (range 0 size)]
-       (asteroid x y z (residual-radiation-at x y z))))))
+       (new-asteroid x y z (residual-radiation-at x y z))))))
 
 (defn has-location [asteroid x y z]
   (and (= (asteroid :x) x) (= (asteroid :y) y) (= (asteroid :z) z)))
+
+(defn get-asteroid-field [] @field)
+
+(defn reset []
+  (reset! field (new-asteroid-field)) @field)
+
+(reset)
+
 
