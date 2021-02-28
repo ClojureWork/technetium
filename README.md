@@ -22,6 +22,16 @@ To start a web server for the application, run:
 
     lein run 
 
+## API
+
+Simple 'GETful' API
+
+`GET /new-game` Resets game and returns state game
+
+`GET /game` Returns current state of game
+
+`GET /game?x=0&y=0&z=0` Returns current state of game after selecting asteroid at (x, y, z)
+
 ## License
 
 The use and distribution terms for this software are covered by the [Eclipse Public License - v 2.0][3], 
