@@ -160,7 +160,7 @@ function revealPod(podData) {
     xhttp.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
             gameData = JSON.parse(this.responseText);
-            updateMinefield(gameData.pods);
+            updateMinefield(gameData);
         }
     };
     xhttp.open("GET", "/asteroid?x=" + podData.x + "&y=" + podData.y + "&z=" + podData.z, true);
