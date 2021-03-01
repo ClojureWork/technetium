@@ -17,7 +17,8 @@
 (defn asteroid [x y z]
   {:status 200
    :headers {"Content-Type" "application/json"}
-   :body (json/write-str {:x x :y y :z z})})
+   :body (json/write-str
+           (game/reveal (Integer/parseInt x) (Integer/parseInt y) (Integer/parseInt z)))})
 
 (defn get-asteroid-json [{:keys [query-params]}]
   (println query-params)

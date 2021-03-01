@@ -155,7 +155,7 @@ function markPod(podId) {
     xhttp.send();
 }
 
-function revealPod(podId) {
+function revealPod(podData) {
     var xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
@@ -163,7 +163,7 @@ function revealPod(podId) {
             updateMinefield(gameData.pods);
         }
     };
-    xhttp.open("PATCH", "http://space-mines-api.herokuapp.com/game/" + gameId + "/pod/" + podId, true);
+    xhttp.open("GET", "/asteroid?x=" + podData.x + "&y=" + podData.y + "&z=" + podData.z, true);
     xhttp.setRequestHeader("Content-type", "application/json");
     xhttp.send();
 }
@@ -218,7 +218,7 @@ function onMouseDown(event) {
                 markPod(pod.data.id);
             }
             else {
-                revealPod(pod.data.id);
+                revealPod(pod.data);
             }
             break;
         }
