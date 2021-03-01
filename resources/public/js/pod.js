@@ -15,6 +15,10 @@ Pod.create = function (podData) {
     mesh.position.z = podData.z * Pod.spacing;
     mesh.castShadow = true;
 
+    if(podData.radiation == 0) {
+        mesh.visible = false;
+    }
+
     return pod;
 };
 
@@ -95,8 +99,7 @@ Pod.getColor = function(podData) {
     }
     let radiation = podData.radiation;
     switch (radiation) {
-        case -1:
-        case 0: return Pod.GRAY;
+        case null: return Pod.GRAY;
         case 1: return Pod.BLUE;
         case 2: return Pod.GREEN;
         case 3: return Pod.YELLOW;
