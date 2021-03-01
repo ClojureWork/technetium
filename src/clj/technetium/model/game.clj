@@ -10,7 +10,7 @@
     (asteroid/new-asteroid x y z nil)))
 
 (defn reset []
-  (reset! game (asteroid/new-asteroid-field)) @game)
+  (reset! game (new-game asteroid/field-size)) @game)
 
 (defn get-game [] @game)
 
