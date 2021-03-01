@@ -28,7 +28,7 @@
                 c (range (- z 1) (+ z 2))]
             {:x a :y b :z c})))
 
-(defn residual-radiation-at [x y z]
+(defn radiation-at [x y z]
   (if (radioactive? x y z)
     RADIOACTIVE
     (count (filter #(radioactive? (:x %) (:y %) (:z %)) (adjacent x y z)))))
@@ -40,7 +40,7 @@
      (for [x (range 0 size)
            y (range 0 size)
            z (range 0 size)]
-       (new-asteroid x y z (residual-radiation-at x y z))))))
+       (new-asteroid x y z (radiation-at x y z))))))
 
 (defn has-location [asteroid x y z]
   (and (= (asteroid :x) x) (= (asteroid :y) y) (= (asteroid :z) z)))
