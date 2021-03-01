@@ -12,12 +12,15 @@
 (defn location-matches? [x y z asteroid]
   (and (= x (:x asteroid)) (= y (:y asteroid)) (= z (:z asteroid))))
 
-(defn reveal [x y z]
-  (remove #(location-matches? x y z %) @game))
+(defn remove-asteroid [x y z game]
+  (remove #(location-matches? x y z %) game))
 
+(defn reveal [x y z]
+  (swap! game (fn [n] (remove-asteroid x y z n))))
 
 (defn reset []
-  (reset! game (new-game asteroid/field-size)) @game)
+  (reset! game (new-game asteroid/field-size))
+  @game)
 
 (defn get-game [] @game)
 
