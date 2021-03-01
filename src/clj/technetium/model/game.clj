@@ -1,24 +1,16 @@
 (ns technetium.model.game
-  (:require [technetium.model.asteroid :as field]))
+  (:require [technetium.model.asteroid :as asteroid]))
 
 (def game (atom []))
-
-(defn find-asteroid-at [x y z]
-  (first (filter #(field/has-location % x y z) @game)))
 
 (defn new-game [size]
   (for [x (range 0 size)
         y (range 0 size)
         z (range 0 size)]
-    (field/new-asteroid x y z nil)))
+    (asteroid/new-asteroid x y z nil)))
 
 (defn reset []
-  (reset! game (field/new-asteroid-field)) @game)
-
-(defn select [x y z]
-  (if
-   (.contains (field/field-data :radioactive) {:x x :y y :z z})
-    (reset) (new-game 1)))
+  (reset! game (asteroid/new-asteroid-field)) @game)
 
 (defn get-game [] @game)
 

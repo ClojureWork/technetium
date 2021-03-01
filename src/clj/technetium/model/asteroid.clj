@@ -2,12 +2,12 @@
 
 (def RADIOACTIVE 43)
 
-(def field-size 4)
+(def ^:private field-size 4)
 
-(def field-data {:size   field-size
-                 :radioactive [{:x 1 :y 1 :z 1} {:x 0 :y 0 :z 0}]})
+(def ^:private field-data {:size   field-size
+                           :radioactive [{:x 1 :y 1 :z 1} {:x 0 :y 0 :z 0}]})
 
-(def field (atom []))
+(def ^:private field (atom []))
 
 (defn radioactive? [x y z]
   (some #(= % {:x x :y y :z z}) (:radioactive field-data)))
