@@ -21,9 +21,6 @@
     :radiation radiation
     :flagged   false}))
 
-(defn radiation-from [x y z]
-  (if (.contains (field-data :radioactive) {:x x :y y :z z}) 1 0))
-
 (defn adjacent [x y z]
   (remove #(= {:x x :y y :z z} %)
           (for [a (range (- x 1) (+ x 2))
@@ -31,13 +28,10 @@
                 c (range (- z 1) (+ z 2))]
             {:x a :y b :z c})))
 
-(defn radiation-from-location [location]
-  (radiation-from (:x location) (:y location) (:z location)))
-
 (defn residual-radiation-at [x y z]
   (if (radioactive? x y z)
     RADIOACTIVE
-    (reduce + (map radiation-from-location (adjacent x y z)))))
+    (count (filter #(radioactive? (:x %) (:y %) (:z %)) (adjacent x y z)))))
 
 (defn new-asteroid-field
   ([] (new-asteroid-field field-data))
