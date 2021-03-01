@@ -47,8 +47,9 @@
 
 (defn get-asteroid-field [] @field)
 
-(defn get-asteroid-at [x y z field]
-  (first (filter #(has-location % x y z) field)))
+(defn get-asteroid-at
+  ([x y z] (get-asteroid-at x y z @field))
+  ([x y z field] (first (filter #(has-location % x y z) field))))
 
 (defn reset []
   (reset! field (new-asteroid-field)) @field)
