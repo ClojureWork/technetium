@@ -57,4 +57,8 @@
 (defn radioactive-count [field]
   (count (filter #(= RADIOACTIVE (:radiation %)) field)))
 
+(defn visible? [asteroid]
+  (let [radiation (:radiation asteroid)]
+    (or (nil? radiation) (not (zero? radiation)))))
+
 (reset)
