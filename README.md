@@ -22,7 +22,7 @@ To start a web server for the application, run:
 
     lein run 
 
-## API
+## API (TBD)
 
 Simple 'GETful' API
 
@@ -31,6 +31,12 @@ Simple 'GETful' API
 `GET /game` Returns current state of game
 
 `GET /game?x=0&y=0&z=0` Returns current state of game after selecting asteroid at (x, y, z)
+
+## Deployment
+
+Currently deployed to Heroku
+
+`https://crojure-technetium.herokuapp.com/`
 
 ## License
 
