@@ -7,7 +7,7 @@
 
 (deftest test-adjacent
   (testing "fetching list of adjacent locations"
-    (let [adjacent (adjacent 0 0 0)]
+    (let [adjacent (potential-neighbor-coordinates 0 0 0)]
       (is (= 26 (count adjacent))))))
 
 (deftest test-new-asteroid-field

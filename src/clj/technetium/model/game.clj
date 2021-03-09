@@ -7,7 +7,7 @@
   (for [x (range 0 size)
         y (range 0 size)
         z (range 0 size)]
-    (asteroid/new-asteroid x y z nil)))
+    (asteroid/new-asteroid x y z)))
 
 (defn location-matches? [x y z asteroid]
   (and (= x (:x asteroid)) (= y (:y asteroid)) (= z (:z asteroid))))

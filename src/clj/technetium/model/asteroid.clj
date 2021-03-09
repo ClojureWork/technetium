@@ -13,7 +13,7 @@
   ([data x y z] (some #(= % {:x x :y y :z z}) (:radioactive data)))
   ([x y z] (radioactive? field-data x y z)))
 
-(defn adjacent [x y z]
+(defn potential-neighbor-coordinates [x y z]
   (remove #(= {:x x :y y :z z} %)
           (for [a (range (- x 1) (+ x 2))
                 b (range (- y 1) (+ y 2))
@@ -21,16 +21,19 @@
             {:x a :y b :z c})))
 
 (defn count-radioactive-neighbors [data x y z]
-  (count (filter #(radioactive? data (:x %) (:y %) (:z %)) (adjacent x y z))))
+  (count (filter #(radioactive? data (:x %) (:y %) (:z %)) (potential-neighbor-coordinates x y z))))
 
 (defn radiation-at [data x y z]
   (if (radioactive? data x y z) RADIOACTIVE (count-radioactive-neighbors data x y z)))
 
-(defn asteroid [data x y z]
-  {:x         x
-   :y         y
-   :z         z
-   :radiation (radiation-at data x y z)})
+(defn new-asteroid
+  ([data x y z] {:x         x
+                 :y         y
+                 :z         z
+                 :radiation (radiation-at data x y z)})
+  ([x y z] {:x         x
+            :y         y
+            :z         z}))
 
 (defn new-asteroid-field
   ([data]
@@ -38,17 +41,8 @@
      (for [x (range 0 size)
            y (range 0 size)
            z (range 0 size)]
-       (asteroid data x y z))))
+       (new-asteroid data x y z))))
   ([] (new-asteroid-field field-data)))
-
-(defn new-asteroid
-  ([x y z] (new-asteroid x y z nil))
-  ([x y z radiation]
-   {:x         x
-    :y         y
-    :z         z
-    :radiation radiation
-    :flagged   false}))
 
 (defn has-location [asteroid x y z]
   (and (= (asteroid :x) x) (= (asteroid :y) y) (= (asteroid :z) z)))
