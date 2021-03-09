@@ -36,13 +36,15 @@ Simple 'GETful' API
 
 Currently deployed to Heroku
 
-`https://crojure-technetium.herokuapp.com/`
+[https://crojure-technetium.herokuapp.com/][3]
+
+[3]: https://crojure-technetium.herokuapp.com/
 
 ## License
 
-The use and distribution terms for this software are covered by the [Eclipse Public License - v 2.0][3], 
+The use and distribution terms for this software are covered by the [Eclipse Public License - v 2.0][4], 
 By using this software in any fashion, you are agreeing to be bound by the terms of this license. 
 You must not remove this notice, or any other, from this software.
 
-[3]: https://www.eclipse.org/legal/epl-2.0/
+[4]: https://www.eclipse.org/legal/epl-2.0/
 Copyright © 2021
