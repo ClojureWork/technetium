@@ -40,6 +40,44 @@ Currently deployed to Heroku
 
 [3]: https://crojure-technetium.herokuapp.com/
 
+### Leiningen
+
+Run tests
+`lein test`
+
+Check test coverage (via Cloverage plugin)
+`lein cloverage`
+
+```
+|-------------------------------+---------+---------|
+|                     Namespace | % Forms | % Lines |
+|-------------------------------+---------+---------|
+|             technetium.config |   71.15 |  100.00 |
+|               technetium.core |   16.99 |   28.57 |
+|     technetium.dev-middleware |  100.00 |  100.00 |
+|                technetium.env |   19.15 |   66.67 |
+|            technetium.handler |   70.19 |   90.00 |
+|             technetium.layout |   88.52 |  100.00 |
+|         technetium.middleware |   59.63 |   92.31 |
+| technetium.middleware.formats |  100.00 |  100.00 |
+|     technetium.model.asteroid |   91.52 |   89.58 |
+|         technetium.model.game |   69.43 |   66.67 |
+|              technetium.nrepl |    3.19 |   20.00 |
+|        technetium.routes.home |   48.39 |   60.00 |
+|                          user |   60.00 |   60.00 |
+|-------------------------------+---------+---------|
+|                     ALL FILES |   57.54 |   71.60 |
+|-------------------------------+---------+---------|
+```
+
+## Dev
+
+### Clojure format plugin
+
+`lein cljfmt check`
+
+`lein cljfmt fix`
+
 ## License
 
 The use and distribution terms for this software are covered by the [Eclipse Public License - v 2.0][4], 
