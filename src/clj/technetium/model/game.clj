@@ -21,9 +21,9 @@
 (defn reveal [x y z]
   (swap! game
          (fn [n]
-            (cons
-              (asteroid/get-asteroid-at x y z)
-              (remove-asteroid x y z n)))))
+           (cons
+            (asteroid/get-asteroid-at x y z)
+            (remove-asteroid x y z n)))))
 
 (defn reset []
   (reset! game (new-game asteroid/field-size))
