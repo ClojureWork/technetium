@@ -5,7 +5,11 @@
 (def field-size 4)
 
 (def ^:private field-data {:size        field-size
-                           :radioactive [{:x 1 :y 1 :z 1} {:x 0 :y 0 :z 0}]})
+                           :radioactive [{:x 1 :y 1 :z 1}
+                                         {:x 1 :y 1 :z 2}
+                                         {:x 2 :y 1 :z 1}
+                                         ]
+                           })
 
 (def ^:private field (atom []))
 
